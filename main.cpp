@@ -5,10 +5,8 @@
 using namespace std;
 
 int main(){
-
     
     ticTacToe gameObject;
     
-
     return 0;
 }
