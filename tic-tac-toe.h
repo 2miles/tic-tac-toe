@@ -9,7 +9,7 @@ class ticTacToe
 
         int getXCoord();
         int getYCoord();
-        bool placeMove(int x, int y, char currentPlayer);
+        bool placeMove(int x, int y, char currentPlayer,bool& move);
         void changePlayer(char p1, char p2, char& current);
         void clearBoard();
         void printBoard();

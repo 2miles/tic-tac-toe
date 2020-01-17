@@ -18,6 +18,7 @@ void ticTacToe::playGame()
     char player2 = 'O';
     char currentPlayer = 'X';
     bool isDone = false;
+    bool move = true;
     int x,y;
 
     while(isDone == false)
@@ -25,9 +26,10 @@ void ticTacToe::playGame()
         printBoard();
         x = getXCoord();
         y = getYCoord();
-        placeMove(x, y, currentPlayer);
-        changePlayer(player1, player2, currentPlayer);
-        cout << currentPlayer << endl;
+        placeMove(x, y, currentPlayer, move);
+        if(move == true){
+            changePlayer(player1, player2, currentPlayer);
+        }
     }
 }
 
@@ -78,12 +80,15 @@ int ticTacToe::getYCoord()
 
 
 //places move on board//////////////////////////////
-bool ticTacToe::placeMove(int x, int y, char currentPlayer)
+bool ticTacToe::placeMove(int x, int y, char currentPlayer,bool& move)
 {
     if(board[y][x] != ' ') {
+        cout << "Cant move there!\n";
+        move = false;
         return false;
     }
     board[y][x] = currentPlayer;
+    move = true;
     return true;
 }
 
