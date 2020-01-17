@@ -10,10 +10,10 @@ ticTacToe::ticTacToe()
 }
 
 
+
 //main game loop////////////////////////////////////
 void ticTacToe::playGame()
 {
-
     char player1 = 'X';
     char player2 = 'O';
     char currentPlayer = 'X';
@@ -30,24 +30,50 @@ void ticTacToe::playGame()
 }
 
 
+
 //gets x coord of move form user////////////////////
 int ticTacToe::getXCoord()
 {
+    bool isInputBad = true;
     int x;
-    cout << "Enter the x-coorinate: " << endl;
-    cin >> x; 
+    while(isInputBad == true)
+    {
+        cout << "Enter the x-coorinate: " << endl;
+        cin >> x; 
+        
+        if(x < 1 || x > 3) {
+            cout << "Invalid coordinate!\n";
+        }
+        else {
+            isInputBad = false;
+        }
+    }
     return x - 1;
 }
+
 
 
 //gets y coord of move form user////////////////////
 int ticTacToe::getYCoord()
 {
+    bool isInputBad = true;
     int y;
-    cout << "Enter the y-coorinate: " << endl;
-    cin >> y; 
+    while(isInputBad == true)
+    {
+        cout << "Enter the x-coorinate: " << endl;
+        cin >> y; 
+        
+        if(y < 1 || y > 3) {
+            cout << "Invalid coordinate!\n";
+        }
+        else {
+            isInputBad = false;
+        }
+    }
     return y - 1;
 }
+
+
 
 //places move on board//////////////////////////////
 bool ticTacToe::placeMove(int x, int y, char currentPlayer)
@@ -61,6 +87,7 @@ bool ticTacToe::placeMove(int x, int y, char currentPlayer)
 }
 
 
+
 //clears the board//////////////////////////////////
 void ticTacToe::clearBoard()
 {
@@ -70,6 +97,7 @@ void ticTacToe::clearBoard()
         }
     }
 }
+
 
 
 //prints char board[][] as a board////////////////////////
