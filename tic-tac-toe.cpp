@@ -10,16 +10,14 @@ ticTacToe::ticTacToe()
 }
 
 
+//main game loop////////////////////////////////////
 void ticTacToe::playGame()
 {
 
     char player1 = 'X';
     char player2 = 'O';
-
     char currentPlayer = 'X';
-
     bool isDone = false;
-
     int x,y;
 
     while(isDone == false)
@@ -28,13 +26,11 @@ void ticTacToe::playGame()
         x = getXCoord();
         y = getYCoord();
         placeMove(x, y, currentPlayer);
-
     }
-    
 }
 
 
-
+//gets x coord of move form user////////////////////
 int ticTacToe::getXCoord()
 {
     int x;
@@ -44,6 +40,7 @@ int ticTacToe::getXCoord()
 }
 
 
+//gets y coord of move form user////////////////////
 int ticTacToe::getYCoord()
 {
     int y;
@@ -52,7 +49,7 @@ int ticTacToe::getYCoord()
     return y - 1;
 }
 
-
+//places move on board//////////////////////////////
 bool ticTacToe::placeMove(int x, int y, char currentPlayer)
 {
     if(board[y][x] != ' ')
@@ -64,6 +61,7 @@ bool ticTacToe::placeMove(int x, int y, char currentPlayer)
 }
 
 
+//clears the board//////////////////////////////////
 void ticTacToe::clearBoard()
 {
     for(int i = 0; i < 3; i++){
@@ -74,6 +72,7 @@ void ticTacToe::clearBoard()
 }
 
 
+//prints char board[][] as a board////////////////////////
 void ticTacToe::printBoard()
 {
     cout << endl;
@@ -92,6 +91,5 @@ void ticTacToe::printBoard()
     cout << "    -------------" << endl;
     cout << endl;
     cout << endl;
-    
 }
 
