@@ -6,7 +6,6 @@ using namespace std;
 
 int main(){
     
-    ticTacToe gameObject;
-    
+    ticTacToe gameObject; 
     return 0;
 }
