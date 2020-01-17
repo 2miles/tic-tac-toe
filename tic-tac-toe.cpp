@@ -23,9 +23,11 @@ void ticTacToe::playGame()
 
     while(isDone == false)
     {
-        printBoard();
-        x = getXCoord();
-        y = getYCoord();
+        if(move == true){
+            printBoard();
+        }
+        x = getXCoord(currentPlayer);
+        y = getYCoord(currentPlayer);
         placeMove(x, y, currentPlayer, move);
         if(move == true){
             changePlayer(player1, player2, currentPlayer);
@@ -36,12 +38,13 @@ void ticTacToe::playGame()
 
 
 //gets x coord of move form user////////////////////
-int ticTacToe::getXCoord()
+int ticTacToe::getXCoord( char current)
 {
     bool isInputBad = true;
     int x;
     while(isInputBad == true)
     {
+        cout << current << "'s turn. \n";
         cout << "Enter the x-coorinate: " << endl;
         cin >> x; 
         
@@ -58,13 +61,13 @@ int ticTacToe::getXCoord()
 
 
 //gets y coord of move form user////////////////////
-int ticTacToe::getYCoord()
+int ticTacToe::getYCoord(char current)
 {
     bool isInputBad = true;
     int y;
     while(isInputBad == true)
     {
-        cout << "Enter the x-coorinate: " << endl;
+        cout << "Enter the y-coorinate: " << endl;
         cin >> y; 
         
         if(y < 1 || y > 3) {
@@ -93,7 +96,7 @@ bool ticTacToe::placeMove(int x, int y, char currentPlayer,bool& move)
 }
 
 
-
+//change player/////////////////////////////////////
 void ticTacToe::changePlayer(char p1,char p2, char& currentP)
 {
     if(currentP == p1) {
