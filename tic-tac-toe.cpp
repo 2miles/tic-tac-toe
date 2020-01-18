@@ -42,7 +42,8 @@ void ticTacToe::playGame()
         //place the move down. print board if move occupied
         placeMove(x, y, currentPlayer, move);
 
-        //check for win. if win: increments score, prints score, prints board, prints win message and ends game
+        //check for win. if win: 
+        //increments score, prints score, prints board, prints win message and ends game
         if( checkForWin(currentPlayer) == true){
             if(currentPlayer == player1){
                 player1Score++;
