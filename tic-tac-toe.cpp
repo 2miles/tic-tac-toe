@@ -4,10 +4,9 @@
 using namespace std;
 
 
-ticTacToe::ticTacToe()
-{
-}
 
+    int player1Score = 0;
+    int player2Score = 0;
 
 
 //main game loop////////////////////////////////////
@@ -39,8 +38,16 @@ void ticTacToe::playGame()
         if( checkForWin(currentPlayer) == true){
             printBoard();
             cout << currentPlayer << " wins!\n\n";
+            if(currentPlayer == player1){
+                player1Score++;
+            }
+            else{
+                player2Score++;
+            }
             isDone = true;
         }
+        cout << "Score: X - " << player1Score << "   ";
+        cout << "O - " << player2Score << endl << endl;
         if(checkForTie(turn) == true && isDone == false){
             cout << endl << "Tie game! \n ";
             cout << endl;
