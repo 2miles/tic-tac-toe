@@ -26,17 +26,24 @@ void ticTacToe::playGame()
 
     while(isDone == false)
     {
+
+        //prints board unless move space occupied
         if(move == true){
             printBoard();
         }
         
+        //ask and get coordinates from user
         x = getXCoord(currentPlayer);
         y = getYCoord(currentPlayer);
+
+        //clear the terminal screen
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         
+        //place the move down. print board if move occupied
         placeMove(x, y, currentPlayer, move);
 
+        //check for win. prints board if win and increments score and ends game
         if( checkForWin(currentPlayer) == true){
             printBoard();
             cout << currentPlayer << " wins!\n\n";
@@ -49,14 +56,18 @@ void ticTacToe::playGame()
             isDone = true;
         }
         
+        //prints score
         cout << "Score: X - " << player1Score << "   ";
         cout << "O - " << player2Score << endl << endl;
+
+        //check for tie, ends game if tie
         if(checkForTie(turn) == true && isDone == false){
             cout << endl << "Tie game! \n ";
             cout << endl;
             isDone = true;
         }
         
+        //if move was not occupied switch  player and increment turn
         if(move == true){
             changePlayer(player1, player2, currentPlayer);
             turn++;
