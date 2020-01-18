@@ -6,7 +6,6 @@ using namespace std;
 
 ticTacToe::ticTacToe()
 {
-    clearBoard();
 }
 
 
@@ -14,6 +13,9 @@ ticTacToe::ticTacToe()
 //main game loop////////////////////////////////////
 void ticTacToe::playGame()
 {
+    
+    clearBoard();
+    
     char player1 = 'X';
     char player2 = 'O';
     char currentPlayer = player1;
@@ -30,7 +32,7 @@ void ticTacToe::playGame()
         x = getXCoord(currentPlayer);
         y = getYCoord(currentPlayer);
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        cout << "\n\n\n\n\n\n\n\n\n\n";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         placeMove(x, y, currentPlayer, move);
 
         if( checkForWin(currentPlayer) == true){
@@ -64,7 +66,10 @@ int ticTacToe::getXCoord( char current)
         cin >> x; 
         
         if(x < 1 || x > 3) {
+            cout << endl;
             cout << "Invalid coordinate!\n";
+            cout << endl;
+
         }
         else {
             isInputBad = false;
