@@ -29,10 +29,12 @@ void ticTacToe::playGame()
         if(move == true){
             printBoard();
         }
+        
         x = getXCoord(currentPlayer);
         y = getYCoord(currentPlayer);
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        
         placeMove(x, y, currentPlayer, move);
 
         if( checkForWin(currentPlayer) == true){
@@ -46,6 +48,7 @@ void ticTacToe::playGame()
             }
             isDone = true;
         }
+        
         cout << "Score: X - " << player1Score << "   ";
         cout << "O - " << player2Score << endl << endl;
         if(checkForTie(turn) == true && isDone == false){
@@ -53,6 +56,7 @@ void ticTacToe::playGame()
             cout << endl;
             isDone = true;
         }
+        
         if(move == true){
             changePlayer(player1, player2, currentPlayer);
             turn++;
