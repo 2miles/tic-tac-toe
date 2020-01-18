@@ -12,6 +12,7 @@ class ticTacToe
         bool placeMove(int x, int y, char currentPlayer,bool& move);
         void changePlayer(char p1, char p2, char& current);
         bool checkForWin(char current);
+        bool checkForTie(int turn);
         void clearBoard();
         void printBoard();
 
