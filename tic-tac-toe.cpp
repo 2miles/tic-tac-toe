@@ -108,6 +108,10 @@ void ticTacToe::changePlayer(char p1,char p2, char& currentP)
 }
 
 
+
+
+
+
 //clears the board//////////////////////////////////
 void ticTacToe::clearBoard()
 {
