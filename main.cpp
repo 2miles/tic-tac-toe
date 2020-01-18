@@ -20,6 +20,7 @@ int main(){
 
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         
         if (choice == 'N' || choice == 'n')
         {

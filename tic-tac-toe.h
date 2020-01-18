@@ -1,7 +1,6 @@
 class ticTacToe
 {
     public:
-        ticTacToe();
         void playGame();
 
     private:
