@@ -3,16 +3,12 @@
 
 using namespace std;
 
-
-
-    int player1Score = 0;
-    int player2Score = 0;
-
+int player1Score = 0;
+int player2Score = 0;
 
 //main game loop////////////////////////////////////
 void ticTacToe::playGame()
 {
-    
     clearBoard();
     
     char player1 = 'X';
@@ -23,10 +19,8 @@ void ticTacToe::playGame()
     int x,y;
     int turn = 1;
  
-
     while(isDone == false)
     {
-
 
         //prints score
         cout << "Score: X - " << player1Score << "   ";
@@ -36,8 +30,6 @@ void ticTacToe::playGame()
         if(move == true){
             printBoard();
         }
-        
-        
 
         //ask and get coordinates from user
         x = getXCoord(currentPlayer);
@@ -50,7 +42,7 @@ void ticTacToe::playGame()
         //place the move down. print board if move occupied
         placeMove(x, y, currentPlayer, move);
 
-        //check for win. prints board if win and increments score and ends game
+        //check for win. if win: increments score, prints score, prints board, prints win message and ends game
         if( checkForWin(currentPlayer) == true){
             if(currentPlayer == player1){
                 player1Score++;
@@ -68,7 +60,6 @@ void ticTacToe::playGame()
             isDone = true;
         }
         
-
         //check for tie, ends game if tie
         if(checkForTie(turn) == true && isDone == false){
             cout << endl << "Tie game! \n ";
@@ -91,8 +82,8 @@ int ticTacToe::getXCoord( char current)
 {
     bool isInputBad = true;
     int x;
-    while(isInputBad == true)
-    {
+
+    while(isInputBad == true) {
         cout << current << "'s turn. \n";
         cout << "Enter the x-coorinate: " << endl;
         cin >> x; 
@@ -111,14 +102,13 @@ int ticTacToe::getXCoord( char current)
 }
 
 
-
 //gets y coord of move form user////////////////////
 int ticTacToe::getYCoord(char current)
 {
     bool isInputBad = true;
     int y;
-    while(isInputBad == true)
-    {
+
+    while(isInputBad == true) {
         cout << "Enter the y-coorinate: " << endl;
         cin >> y; 
         
@@ -133,12 +123,10 @@ int ticTacToe::getYCoord(char current)
 }
 
 
-
 //places move on board//////////////////////////////
 bool ticTacToe::placeMove(int x, int y, char currentPlayer,bool& move)
 {
     if(board[y][x] != ' ') {
-
         printBoard();
         cout << "\nCant move there!\n";
         move = false;
@@ -165,34 +153,28 @@ void ticTacToe::changePlayer(char p1,char p2, char& currentP)
 //check for win/////////////////////////////////////
 bool ticTacToe::checkForWin(char current)
 {
-    
     //check rows for win
-    for(int i = 0; i < 3; i++)
-    {
+    for(int i = 0; i < 3; i++) {
         if(board[i][0] == current &&
            board[i][0] ==  board[i][1] && 
            board[i][1] == board[i][2]) {
             return true;
         }
     }
-
     //check columns for win 
-    for(int j = 0; j < 3; j++)
-    {
+    for(int j = 0; j < 3; j++) {
         if(board[0][j] == current &&
            board[0][j] == board[1][j] &&
            board[1][j] == board[2][j]) {
             return true;
         }
     } 
-    
     // check top left diagonal 
     if(board[0][0] == current &&
        board[1][1] == board[0][0] &&
        board[1][1] == board[2][2]){
         return true;
     }
-    
     // check top right diagonal 
     if(board[0][2] == current &&
        board[1][1] == board[0][2] &&
@@ -200,20 +182,17 @@ bool ticTacToe::checkForWin(char current)
         return true;
     }
     return false;
-    
 }
+
 
 //check for tie////////////////////////////////////
 bool ticTacToe::checkForTie(int turn)
 {
-    if(turn == 9)
-    {
+    if(turn == 9) {
         return true;
     }
     return false;
-    
 }
-
 
 
 //clears the board//////////////////////////////////
@@ -225,7 +204,6 @@ void ticTacToe::clearBoard()
         }
     }
 }
-
 
 
 //prints char board[][] as a board////////////////////////
