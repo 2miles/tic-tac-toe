@@ -29,13 +29,16 @@ void ticTacToe::playGame()
         }
         x = getXCoord(currentPlayer);
         y = getYCoord(currentPlayer);
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        cout << "\n\n\n\n\n\n\n\n\n\n";
         placeMove(x, y, currentPlayer, move);
+
         if( checkForWin(currentPlayer) == true){
             printBoard();
             cout << currentPlayer << " wins!\n\n";
             isDone = true;
         }
-        if(checkForTie( turn) == true){
+        if(checkForTie(turn) == true && isDone == false){
             cout << endl << "Tie game! \n ";
             cout << endl;
             isDone = true;
@@ -98,6 +101,8 @@ int ticTacToe::getYCoord(char current)
 bool ticTacToe::placeMove(int x, int y, char currentPlayer,bool& move)
 {
     if(board[y][x] != ' ') {
+
+        printBoard();
         cout << "\nCant move there!\n";
         move = false;
         return false;
@@ -120,7 +125,7 @@ void ticTacToe::changePlayer(char p1,char p2, char& currentP)
 }
 
 
-
+//check for win/////////////////////////////////////
 bool ticTacToe::checkForWin(char current)
 {
     
@@ -161,7 +166,7 @@ bool ticTacToe::checkForWin(char current)
     
 }
 
-
+//check for tie////////////////////////////////////
 bool ticTacToe::checkForTie(int turn)
 {
     if(turn == 9)
@@ -171,6 +176,8 @@ bool ticTacToe::checkForTie(int turn)
     return false;
     
 }
+
+
 
 //clears the board//////////////////////////////////
 void ticTacToe::clearBoard()
