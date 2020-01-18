@@ -195,16 +195,17 @@ void ticTacToe::clearBoard()
 void ticTacToe::printBoard()
 {
     cout << endl;
+    cout << "     x1  x2  x3   " << endl;
     cout << "    -------------" << endl;
-    cout << "    | " << board[0][0] << " | ";
+    cout << " y1 | " << board[0][0] << " | ";
     cout << board[0][1] << " | ";
     cout << board[0][2] << " |" << endl;
     cout << "    -------------" << endl;
-    cout << "    | " << board[1][0] << " | ";
+    cout << " y2 | " << board[1][0] << " | ";
     cout << board[1][1] << " | ";
     cout << board[1][2] << " |" << endl;
     cout << "    -------------" << endl;
-    cout << "    | " << board[2][0] << " | ";
+    cout << " y3 | " << board[2][0] << " | ";
     cout << board[2][1] << " | ";
     cout << board[2][2] << " |" << endl;
     cout << "    -------------" << endl;
