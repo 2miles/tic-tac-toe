@@ -29,6 +29,9 @@ class ticTacToe
 
     private:
         char board[3][3];
+        int player1Score = 0;
+        int player2Score = 0;
+
 
         int getXCoord(char current);
         int getYCoord(char current);
@@ -38,5 +41,8 @@ class ticTacToe
         bool checkForTie(int turn);
         void clearBoard();
         void printBoard();
+        void printScore();
+        void clearScrean();
+
 
 };
