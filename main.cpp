@@ -6,14 +6,14 @@ using namespace std;
 
 int main(){
     
-    char choice;
-    bool isDone = false;
+    char choice;  //Play again?
+    bool isDone = false; //game loop
 
     ticTacToe gameObject; 
 
     while(isDone == false)
     {
-        gameObject.playGame();
+        gameObject.playGame();  
 
         cout << "Play again? (Y/N) ";
         cin >> choice;

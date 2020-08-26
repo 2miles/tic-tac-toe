@@ -3,6 +3,30 @@ class ticTacToe
     public:
         void playGame();
 
+        //print score
+        //if move valid:
+        //-print board
+        //
+        //get coordinates
+        //clear screen
+        //
+        //place the move down
+        //if move not valid print board
+        //
+        //check for win------
+        //if win
+        //-increment score
+        //-print score
+        //-print board
+        //-print win message
+        //
+        //check for tie------
+        //if tie
+        //ends game if tie
+        //
+        //if move was not occupied:
+        //-switch player and increment turn
+
     private:
         char board[3][3];
 

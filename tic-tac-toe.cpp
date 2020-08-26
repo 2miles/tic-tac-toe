@@ -18,8 +18,8 @@ void ticTacToe::playGame()
     bool move = true;
     int x,y;
     int turn = 1;
- 
-    while(isDone == false)
+     
+        while(isDone == false)
     {
 
         //prints score
@@ -196,6 +196,7 @@ bool ticTacToe::checkForTie(int turn)
 }
 
 
+
 //clears the board//////////////////////////////////
 void ticTacToe::clearBoard()
 {
@@ -205,6 +206,7 @@ void ticTacToe::clearBoard()
         }
     }
 }
+
 
 
 //prints char board[][] as a board////////////////////////
@@ -228,4 +230,7 @@ void ticTacToe::printBoard()
     cout << endl;
     cout << endl;
 }
+
+
+
 
