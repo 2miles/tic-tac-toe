@@ -29,20 +29,20 @@ class ticTacToe
 
     private:
         char board[3][3];
+        int x
+        int y;   //move coordinates
         int player1Score = 0;
         int player2Score = 0;
 
 
-        int getXCoord(char current);
-        int getYCoord(char current);
-        bool placeMove(int x, int y, char currentPlayer,bool& move);
+        void setXCoord(char current);
+        void setYCoord(char current);
+        void placeMove(char currentPlayer,bool& move);
         void changePlayer(char p1, char p2, char& current);
         bool checkForWin(char current);
-        bool checkForTie(int turn);
+        bool movesAvailable();
+        void incrementScore(char current);
         void clearBoard();
         void printBoard();
         void printScore();
-        void clearScrean();
-
-
 };

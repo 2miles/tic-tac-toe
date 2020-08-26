@@ -12,62 +12,43 @@ void ticTacToe::playGame()
     char player1 = 'X';
     char player2 = 'O';
     char currentPlayer = player1; //X starts the game
-    bool isDone = false;  //is the game over
+    bool gameOver = false;  //is the game over
     bool moveIsValid = true;  //is the move valid
-    int x,y;   //move coordinates
-    int turn = 1; // count turns to determine tie (turn == 9)
      
 
-    while(isDone == false)
+    while(gameOver == false)
     {
         printScore();
-        if(moveIsValid) printBoard();
-
-        x = getXCoord(currentPlayer);
-        y = getYCoord(currentPlayer);
-        
-        //place the move down. print board if move occupied
-        placeMove(x, y, currentPlayer, moveIsValid);
-
-        //check for win. if win: 
-        //increments score, prints score, prints board, prints win message and ends game
+        if(moveIsValid) 
+            printBoard();
+        setXCoord(currentPlayer);
+        setYCoord(currentPlayer);
+        placeMove(currentPlayer, moveIsValid);//if bad move:  prints board, sets moveIsValid to false
+                                              //if good move: makes move, sets moveIsValid to true
         if (checkForWin(currentPlayer)) 
         {
-            if(currentPlayer == player1)
-                player1Score++;
-            else  
-                player2Score++;
-
+            incrementScore(currentPlayer);
             printScore();
             printBoard();
             cout << currentPlayer << " wins!\n\n";
-            isDone = true;
+            gameOver = true;
         }
-        
-        //check for tie, ends game if tie
-        if(checkForTie(turn))
+        else if(!movesAvailable)
         {
             cout << endl << "Tie game! \n " << endl;
-            isDone = true;
+            gameOver = true;
         }
-        
-        //if move was not occupied switch  player and increment turn
         if(moveIsValid)
-        {
             changePlayer(player1, player2, currentPlayer);
-            turn++;
-        }
     }
 }
 
 
 
 //gets x coord of move form user////////////////////
-int ticTacToe::getXCoord( char current)
+void ticTacToe::setXCoord( char current)
 {
     bool isInputBad = true;
-    int x;
-
     while(isInputBad)
     {
         cout << current << "'s turn. \n";
@@ -83,16 +64,13 @@ int ticTacToe::getXCoord( char current)
         else 
             isInputBad = false;
     }
-    return x - 1;
 }
 
 
 //gets y coord of move form user////////////////////
-int ticTacToe::getYCoord(char current)
+void ticTacToe::setYCoord(char current)
 {
     bool isInputBad = true;
-    int y;
-
     while(isInputBad) 
     {
         cout << "Enter the y-coorinate: " << endl;
@@ -103,23 +81,21 @@ int ticTacToe::getYCoord(char current)
         else 
             isInputBad = false;
     }
-    return y - 1;
 }
 
 
 //places move on board//////////////////////////////
-bool ticTacToe::placeMove(int x, int y, char currentPlayer,bool& moveIsValid)
+void ticTacToe::placeMove(char currentPlayer, bool& moveIsValid)
 {
     if(board[y][x] != ' ') 
     {
         printBoard();
         cout << "\nCant move there!\n";
         moveIsValid = false;
-        return false;
+        return;
     }
     board[y][x] = currentPlayer;
     moveIsValid = true;
-    return true;
 }
 
 
@@ -175,23 +151,33 @@ bool ticTacToe::checkForWin(char current)
 }
 
 
-//returns true if game is a tie
-//otherwise returns false
-bool ticTacToe::checkForTie(int turn)
+
+//return true if the are still moves available
+//return false if no more moves left to make
+bool ticTacToe::movesAvailable()
 {
-    if(turn == 9) 
-        return true;
-    return false;
+    for(int i = 0; i < 3; i++)
+        for(int j = 0; j < 3; j++)
+           if (board[i][j] != ' ')
+               return false
+    return true;
 }
 
 
 void ticTacToe::clearBoard()
 {
     for(int i = 0; i < 3; i++)
-    {
         for(int j = 0; j < 3; j++)
            board[i][j] = ' ';
-    }
+}
+
+
+void ticTacToe::incrementScore(char currentPlayer)
+{
+    if(currentPlayer == player1)
+        player1Score++;
+    else  
+        player2Score++;
 }
 
 //prints char board[][] as a board////////////////////////
@@ -224,11 +210,5 @@ void ticTacToe::printScore()
 }
 
 
-//clear the terminal screen
-void ticTacToe::clearScrean()
-{
-    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-}
 
 
