@@ -44,7 +44,7 @@ class ticTacToe
         void setYCoord(char current);
         void placeMove(char currentPlayer,bool& move);
         void changePlayer(char p1, char p2, char& current);
-        bool checkForWin(char current);
+        bool checkForWin();
         bool movesAvailable();
         void incrementScore(char current, char player);
         void clearBoard();

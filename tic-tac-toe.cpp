@@ -68,7 +68,7 @@ void ticTacToe::playGame()
         placeMove(currentPlayer, moveIsValid);//if bad move:  prints board, sets moveIsValid to false
                                               //if good move: makes move, sets moveIsValid to true
                                               
-        if (checkForWin(currentPlayer)) 
+        if (checkForWin()) 
         {
             incrementScore(currentPlayer, player1);
             printScore();
@@ -158,37 +158,33 @@ void ticTacToe::changePlayer(char p1,char p2, char& currentP)
 //              defined as player1 or player2
 //RETURNS true if argument's symbol is a winning state
 //otherwise returns false
-bool ticTacToe::checkForWin(char current)
+bool ticTacToe::checkForWin()
 {
     //check rows for win
     for(int i = 0; i < 3; i++) 
-    {
-        if(board[i][0] == current && 
-            board[i][0] ==  board[i][1] && 
-             board[i][1] == board[i][2])
-            return true;
-    }
+        if(board[i][0] != ' ' && 
+           board[i][0] == board[i][1] && 
+           board[i][1] == board[i][2])
+           return true;
 
     //check columns for win 
     for(int j = 0; j < 3; j++) 
-    {
-        if(board[0][j] == current &&
-            board[0][j] == board[1][j] &&
-             board[1][j] == board[2][j]) 
-            return true;
-    } 
+        if(board[0][j] != ' ' && 
+           board[0][j] == board[1][j] && 
+           board[1][j] == board[2][j]) 
+           return true;
 
     // check top left diagonal 
-    if(board[0][0] == current &&
-        board[1][1] == board[0][0] &&
-         board[1][1] == board[2][2])
-        return true;
-            
+    if(board[1][1] != ' ' && 
+       board[1][1] == board[0][0] && 
+       board[1][1] == board[2][2])
+       return true;
+
     // check top right diagonal 
-    if(board[0][2] == current &&
-        board[1][1] == board[0][2] &&
-         board[1][1] == board[2][0])
-        return true;
+    if(board[1][1] != ' ' && 
+       board[1][1] == board[0][2] && 
+       board[1][1] == board[2][0])
+       return true;
 
     return false;
 }
