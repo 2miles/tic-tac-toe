@@ -4,6 +4,11 @@
 using namespace std;
 
 
+ticTacToe::ticTacToe(char type)
+{
+    gameType = type;
+}
+
 //main game loop////////////////////////////////////
 void ticTacToe::playGame()
 {
@@ -14,6 +19,7 @@ void ticTacToe::playGame()
     char currentPlayer = player1; //X starts the game
     bool gameOver = false;  //is the game over
     bool moveIsValid = true;  //is the move valid
+
      
 
     while(gameOver == false)
@@ -21,19 +27,40 @@ void ticTacToe::playGame()
         printScore();
         if(moveIsValid) 
             printBoard();
-        setXCoord(currentPlayer);
-        setYCoord(currentPlayer);
+
+        if(gameType == '1')
+        {
+            setXCoord(currentPlayer);
+            setYCoord(currentPlayer);
+        }
+        else if (gameType == '2')
+        {
+            if(currentPlayer == player1)
+            {
+                setXCoord(currentPlayer);
+                setYCoord(currentPlayer);
+            }
+            else
+            {
+                // aiMove();
+                setXCoord(currentPlayer); //to be removed
+                setYCoord(currentPlayer); //to be removed
+
+
+            }
+        }
+
         placeMove(currentPlayer, moveIsValid);//if bad move:  prints board, sets moveIsValid to false
                                               //if good move: makes move, sets moveIsValid to true
         if (checkForWin(currentPlayer)) 
         {
-            incrementScore(currentPlayer);
+            incrementScore(currentPlayer, player1);
             printScore();
             printBoard();
             cout << currentPlayer << " wins!\n\n";
             gameOver = true;
         }
-        else if(!movesAvailable)
+        else if(!movesAvailable())
         {
             cout << endl << "Tie game! \n " << endl;
             gameOver = true;
@@ -87,14 +114,14 @@ void ticTacToe::setYCoord(char current)
 //places move on board//////////////////////////////
 void ticTacToe::placeMove(char currentPlayer, bool& moveIsValid)
 {
-    if(board[y][x] != ' ') 
+    if(board[y - 1][x - 1] != ' ') 
     {
         printBoard();
         cout << "\nCant move there!\n";
         moveIsValid = false;
         return;
     }
-    board[y][x] = currentPlayer;
+    board[y - 1][x - 1] = currentPlayer;
     moveIsValid = true;
 }
 
@@ -158,9 +185,9 @@ bool ticTacToe::movesAvailable()
 {
     for(int i = 0; i < 3; i++)
         for(int j = 0; j < 3; j++)
-           if (board[i][j] != ' ')
-               return false
-    return true;
+           if (board[i][j] == ' ')
+               return true;
+    return false;
 }
 
 
@@ -172,9 +199,9 @@ void ticTacToe::clearBoard()
 }
 
 
-void ticTacToe::incrementScore(char currentPlayer)
+void ticTacToe::incrementScore(char currentPlayer, char player)
 {
-    if(currentPlayer == player1)
+    if(currentPlayer == player)
         player1Score++;
     else  
         player2Score++;
@@ -208,7 +235,6 @@ void ticTacToe::printScore()
     cout << "Score: X - " << player1Score << "   ";
     cout << "O - " << player2Score << endl << endl;
 }
-
 
 
 

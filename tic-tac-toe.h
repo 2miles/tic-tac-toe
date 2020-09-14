@@ -1,7 +1,11 @@
 class ticTacToe
 {
     public:
+
+        ticTacToe(char);
+
         void playGame();
+
 
         //print score
         //if move valid:
@@ -29,10 +33,11 @@ class ticTacToe
 
     private:
         char board[3][3];
-        int x
+        int x;
         int y;   //move coordinates
         int player1Score = 0;
         int player2Score = 0;
+        int gameType;
 
 
         void setXCoord(char current);
@@ -41,7 +46,7 @@ class ticTacToe
         void changePlayer(char p1, char p2, char& current);
         bool checkForWin(char current);
         bool movesAvailable();
-        void incrementScore(char current);
+        void incrementScore(char current, char player);
         void clearBoard();
         void printBoard();
         void printScore();
