@@ -47,8 +47,16 @@ void ticTacToe::playGame()
             }
             else if(gameType == '2') //very easy 
             {
-                x = rand() % 3 + 1; 
-                y = rand() % 3 + 1; 
+                int xTemp, yTemp;
+                xTemp = rand() % 3 + 1; 
+                yTemp = rand() % 3 + 1; 
+                while (board[xTemp][yTemp] != ' ')
+                {
+                    xTemp = rand() % 3 + 1; 
+                    yTemp = rand() % 3 + 1; 
+                }
+                x = xTemp;
+                y = yTemp;
             }
 
             else if(gameType == '3') //very hard
