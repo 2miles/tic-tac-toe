@@ -1,6 +1,4 @@
 #include <iostream>
-#include <stdlib.h>
-#include <time.h>
 #include "tic-tac-toe.h"
 
 using namespace std;
@@ -22,8 +20,6 @@ void ticTacToe::playGame()
     bool gameOver = false;  //is the game over
     bool moveIsValid = true;  //is the move valid
 
-    srand(time(NULL));
-
      
 
     while(gameOver == false)
@@ -32,34 +28,30 @@ void ticTacToe::playGame()
         if(moveIsValid) 
             printBoard();
 
-
-        if(gameType == '1') //player vs player
+        if(gameType == '1')
         {
             setXCoord(currentPlayer);
             setYCoord(currentPlayer);
         }
-        else   //player vs computer
+        else if (gameType == '2')
         {
             if(currentPlayer == player1)
             {
                 setXCoord(currentPlayer);
                 setYCoord(currentPlayer);
             }
-            else if(gameType == '2') //very easy 
+            else
             {
-                x = rand() % 3 + 1; 
-                y = rand() % 3 + 1; 
-            }
+                // aiMove();
+                setXCoord(currentPlayer); //to be removed
+                setYCoord(currentPlayer); //to be removed
 
-            else if(gameType == '3') //very hard
-            {
 
             }
         }
 
         placeMove(currentPlayer, moveIsValid);//if bad move:  prints board, sets moveIsValid to false
                                               //if good move: makes move, sets moveIsValid to true
-                                              
         if (checkForWin(currentPlayer)) 
         {
             incrementScore(currentPlayer, player1);
@@ -204,6 +196,8 @@ void ticTacToe::clearBoard()
     for(int i = 0; i < 3; i++)
         for(int j = 0; j < 3; j++)
            board[i][j] = ' ';
+<<<<<<< HEAD
+=======
 }
 
 
@@ -213,6 +207,7 @@ void ticTacToe::incrementScore(char currentPlayer, char player)
         player1Score++;
     else  
         player2Score++;
+>>>>>>> tiegame
 }
 
 //prints char board[][] as a board////////////////////////
