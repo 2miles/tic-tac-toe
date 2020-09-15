@@ -24,50 +24,15 @@ void ticTacToe::playGame()
 
     srand(time(NULL));
 
-     
-
     while(gameOver == false)
     {
         printScore();
         if(moveIsValid) 
             printBoard();
 
-
-        if(gameType == '1') //player vs player
-        {
-            setXCoord(currentPlayer);
-            setYCoord(currentPlayer);
-        }
-        else   //player vs computer
-        {
-            if(currentPlayer == player1)
-            {
-                setXCoord(currentPlayer);
-                setYCoord(currentPlayer);
-            }
-            else if(gameType == '2') //very easy 
-            {
-                int xTemp, yTemp;
-                xTemp = rand() % 3 + 1; 
-                yTemp = rand() % 3 + 1; 
-                while (board[xTemp][yTemp] != ' ')
-                {
-                    xTemp = rand() % 3 + 1; 
-                    yTemp = rand() % 3 + 1; 
-                }
-                x = xTemp;
-                y = yTemp;
-            }
-
-            else if(gameType == '3') //very hard
-            {
-
-            }
-        }
-
+        setXY(currentPlayer, player1);
         placeMove(currentPlayer, moveIsValid);//if bad move:  prints board, sets moveIsValid to false
-                                              //if good move: makes move, sets moveIsValid to true
-                                              
+
         if (checkForWin()) 
         {
             incrementScore(currentPlayer, player1);
@@ -248,5 +213,38 @@ void ticTacToe::printScore()
     cout << "O - " << player2Score << endl << endl;
 }
 
+void ticTacToe::setXY(char currentPlayer, char player)
+{
+    if(gameType == '1') //player vs player
+    {
+        setXCoord(currentPlayer);
+        setYCoord(currentPlayer);
+    }
+    else   //player vs computer
+    {
+        if(currentPlayer == player)
+        {
+            setXCoord(currentPlayer);
+            setYCoord(currentPlayer);
+        }
+        else if(gameType == '2') //very easy 
+        {
+            int xTemp, yTemp;
+            xTemp = rand() % 3 + 1; 
+            yTemp = rand() % 3 + 1; 
+            while (board[xTemp][yTemp] != ' ')
+            {
+                xTemp = rand() % 3 + 1; 
+                yTemp = rand() % 3 + 1; 
+            }
+            x = xTemp;
+            y = yTemp;
+        }
 
+        else if(gameType == '3') //very hard
+        {
+
+        }
+    }
+}
 
