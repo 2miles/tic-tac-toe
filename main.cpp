@@ -10,7 +10,10 @@ int main(){
     char gameTypeChoice;
     bool isDone = false; //game loop
 
-    cout << "Press 1 for Player vs. Player, press 2 for Player vs. AI: ";
+    cout << "Press 1 for Player vs. Player " << endl;
+    cout << "Press 2 for Player vs. AI(easy) " << endl;
+    cout << "Press 3 for Player vs. AI(hard) " << endl;
+    cout << endl;
     cin >> gameTypeChoice;
     cin.ignore(100,'\n');
 

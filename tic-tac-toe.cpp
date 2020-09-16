@@ -1,6 +1,6 @@
 #include <iostream>
-#include <stdlib.h>
-#include <time.h>
+#include <cstdlib>
+#include <ctime>
 #include "tic-tac-toe.h"
 
 using namespace std;
@@ -213,6 +213,7 @@ void ticTacToe::printScore()
     cout << "O - " << player2Score << endl << endl;
 }
 
+
 void ticTacToe::setXY(char currentPlayer, char player)
 {
     if(gameType == '1') //player vs player
@@ -230,21 +231,98 @@ void ticTacToe::setXY(char currentPlayer, char player)
         else if(gameType == '2') //very easy 
         {
             int xTemp, yTemp;
-            xTemp = rand() % 3 + 1; 
-            yTemp = rand() % 3 + 1; 
-            while (board[xTemp][yTemp] != ' ')
+            xTemp = rand() % 3; 
+            yTemp = rand() % 3; 
+            while (board[yTemp][xTemp] != ' ')
             {
-                xTemp = rand() % 3 + 1; 
-                yTemp = rand() % 3 + 1; 
+                xTemp = rand() % 3; 
+                yTemp = rand() % 3; 
             }
-            x = xTemp;
-            y = yTemp;
+            x = xTemp + 1;
+            y = yTemp + 1;
         }
 
         else if(gameType == '3') //very hard
         {
-
+            bestMove();
         }
     }
 }
 
+//sets x and y to the best move
+void ticTacToe::bestMove()
+{
+    int score;
+    int bestScore = -1000;
+    bool isMaximizing = true;
+    int bestX, bestY;
+
+    //AI to move
+    for(int i = 0; i < 3; ++i)
+        for(int j = 0; j < 3; ++j)
+            if(board[i][j] == ' ')
+            {
+                board[i][j] = 'O';
+                isMaximizing = true;
+                score = miniMax(isMaximizing);
+                board[i][j] = ' ';
+                bestScore = max(score, bestScore);
+                if (bestScore == score)
+                {
+                    bestY = i + 1;
+                    bestX = j + 1;
+                }
+            }
+    x = bestX;
+    y = bestY;
+}
+
+int ticTacToe::miniMax( bool  & isMaximizing)
+{
+
+    if (checkForWin() && isMaximizing)
+        return 1;
+    else if (checkForWin() && !isMaximizing)
+        return -1;
+    else if (!movesAvailable())
+        return 0;
+
+    if(isMaximizing)
+    {
+        int bestScore = 1000;
+        for(int i = 0; i < 3; ++i)
+        {
+           for(int j = 0; j < 3; ++j)
+           {
+                if(board[i][j] == ' ')
+                {
+                    board[i][j] = 'X';
+                    isMaximizing = false;
+                    int score = miniMax(isMaximizing);
+                    board[i][j] = ' ';
+                    bestScore = min(score, bestScore);
+                }
+           }
+        }
+        return bestScore;
+    }
+    else
+    {
+        int bestScore = -1000;
+        for(int i = 0; i < 3; ++i)
+        {
+           for(int j = 0; j < 3; ++j)
+           {
+                if(board[i][j] == ' ')
+                {
+                    board[i][j] = 'O';
+                    isMaximizing = true;
+                    int score = miniMax(isMaximizing);
+                    board[i][j] = ' ';
+                    bestScore = max(score, bestScore);
+                }
+           }
+        }
+        return bestScore;
+    }
+}

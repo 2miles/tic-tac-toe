@@ -51,4 +51,8 @@ class ticTacToe
         void clearBoard();
         void printBoard();
         void printScore();
+
+        void bestMove();
+        int miniMax(bool & isMax);
+
 };
