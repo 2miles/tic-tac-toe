@@ -1,2 +1,4 @@
 bullshit.txt
 *.out
+*.o
+tictac
